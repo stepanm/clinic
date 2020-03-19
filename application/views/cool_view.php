@@ -1,3 +1,4 @@
 <?php
 echo '<br>хаюшки';
-echo $data;
+//session_start();
+echo $_SESSION['login'].' d sfsdfsdfs';

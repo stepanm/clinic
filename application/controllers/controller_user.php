@@ -9,19 +9,42 @@ class Controller_user extends Controller {
 
     function action_index()
     {
-        $this->view->generate('reg_view.php', 'template_view.php');
+
+        session_start();
+        $this->view->generate('auth_form_view.php', 'template_view.php');
     }
-    function action_registration()
+    function action_auth_form()
+    {   session_start();
+        $this->view->generate('auth_form_view.php', 'template_view.php');
+    }
+    function action_quit()
     {
-        $this->model->user_create($_POST);
-        $this->model->user_add_to_db();
-        $this->view->generate('auth_view.php', 'template_view.php');
+        session_start();
+        $this->model->user_quit();
+        $this->view->generate('auth_form_view.php', 'template_view.php');
     }
+
+
     function action_auth()
     {
-        $data=$this->model->user_check_in_db($_POST);
-        //echo $data;
-        $this->view->generate('cool_view.php', 'template_view.php',$data);
+        session_start();
+        $data=$this->model->user_auth($_POST);
+         $this->view->generate('auth_form_view.php', 'template_view.php', $data);
     }
+
+    function action_registration()
+    {
+        session_start();
+        $this->model->user_create($_POST);
+        $this->model->user_add();
+        $this->view->generate('auth_form_view.php', 'template_view.php');
+    }
+
+    function action_reg_form()
+    {
+        session_start();
+        $this->view->generate('reg_form_view.php', 'template_view.php');
+    }
+
 
 }
