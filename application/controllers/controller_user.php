@@ -7,6 +7,12 @@ class Controller_user extends Controller {
         $this->view = new View();
     }
 
+    function action_cabinet(){
+
+        session_start();
+        $this->view->generate('cabinet_view.php', 'template_view.php');
+
+    }
     function action_index()
     {
 
@@ -21,7 +27,7 @@ class Controller_user extends Controller {
     {
         session_start();
         $this->model->user_quit();
-        $this->view->generate('auth_form_view.php', 'template_view.php');
+        $this->view->generate('cabinet_view.php', 'template_view.php');
     }
 
 
@@ -29,7 +35,7 @@ class Controller_user extends Controller {
     {
         session_start();
         $data=$this->model->user_auth($_POST);
-         $this->view->generate('auth_form_view.php', 'template_view.php', $data);
+         $this->view->generate('cabinet_view.php', 'template_view.php', $data);
     }
 
     function action_registration()
@@ -37,13 +43,18 @@ class Controller_user extends Controller {
         session_start();
         $this->model->user_create($_POST);
         $this->model->user_add();
-        $this->view->generate('auth_form_view.php', 'template_view.php');
+        $this->view->generate('cabinet_view.php', 'template_view.php');
     }
 
     function action_reg_form()
     {
         session_start();
         $this->view->generate('reg_form_view.php', 'template_view.php');
+    }
+    function action_userProfile()
+    {
+        session_start();
+        $this->view->generate('userProfile_view.php', 'template_view.php');
     }
 
 
